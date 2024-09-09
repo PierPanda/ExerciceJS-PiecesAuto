@@ -69,3 +69,31 @@ const pieces = await reponse.json();
     sectionFiches.appendChild(pieceElement);
 }
 
+const boutonTrier = document.querySelector(".btn-trier");
+
+boutonTrier.addEventListener("click", function () {
+  // On créer un nouveau tableau pour les pieces triées à partir de la liste de pieces.
+  // On trie la liste pieces en fonction de la disponibilité.
+  const piecesOrdonees = Array.from(pieces);
+  // La fonction sort s’attend à recevoir un nombre de la part de la fonction anonyme. Le signe de ce nombre (positif, négatif ou nul) sert à indiquer dans quel ordre ranger les deux éléments :
+    // si le nombre est positif, alors B sera rangé avant A ;
+    // si le nombre est négatif, alors A sera rangé avant B ;
+    //si le nombre est zéro (0), alors l’ordre sera inchangé.
+
+  piecesOrdonees.sort(function (a, b) {
+      return a.prix - b.prix;
+  });
+  console.log(piecesOrdonees);
+
+});
+
+const boutonFiltrer = document.querySelector(".btn-filtrer");
+
+boutonFiltrer.addEventListener("click", function () {
+  // Utilisation de la fonction filter sur la liste de pieces (permet de filtrer les pieces en fonction d'une condition)
+  // La fonction filter prend une fonction anonyme avec en argument un element de la liste qui sera retourné s'il remplis la condition ( ici, prix inferieur à 35€)
+  const piecesFiltrees = pieces.filter(function (piece) {
+      return piece.prix <= 35;
+  });
+  console.log(piecesFiltrees);
+});
