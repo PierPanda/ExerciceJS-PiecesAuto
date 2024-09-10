@@ -1,3 +1,5 @@
+//Import du fichier avis.js qui contien l'appel API
+import { ajoutListenersAvis } from "./avis.js";
 // // Récupération des pièces depuis le fichier JSON
 const reponse = await fetch("pieces-autos.json");
 const pieces = await reponse.json();
@@ -28,34 +30,51 @@ function genererPieces(pieces){
     const sectionFiches = document.querySelector(".fiches");
     // Création d’une balise dédiée à une pièce automobile
     const pieceElement = document.createElement("article");
-    // Création des balises
+    // Création des balises image
     const imageElement = document.createElement("img");
     imageElement.src = article.image;
+
     const nomElement = document.createElement("h2");
     nomElement.innerText = article.nom;
+
     const prixElement = document.createElement("p");
     prixElement.innerText = `Prix: ${article.prix} € (${article.prix < 35 ? "€" : "€€€"})`;
+
     const categorieElement = document.createElement("p");
     categorieElement.innerText = article.categorie ?? "(aucune catégorie)";
+
     const descriptionElement = document.createElement("p");
     descriptionElement.innerText = article.description ?? "Aucune description pour le moment.";
+
     const stockElement = document.createElement("p");
-    stockElement.innerText = article.disponibilite ? "En stock" : "Piece indisponible";
+    stockElement.innerText = article.disponibilite ? "En stock" : "Rupture de stock";
+
+    const avisBouton = document.createElement("button");
+    //recupération du data-id
+    avisBouton.dataset.id = article.id;
+    //affichage du text dans le boutton
+    avisBouton.textContent = "Afficher les avis";
 
     // On rattache la balise article a la section Fiches
     sectionFiches.appendChild(pieceElement);
     // On rattache l’image à pieceElement (la balise article)
     pieceElement.appendChild(imageElement);
+    // On rattache le nom à pieceElement (la balise article)
     pieceElement.appendChild(nomElement);
+    // On rattache le prix à pieceElement (la balise article)
     pieceElement.appendChild(prixElement);
+    // On rattache la catégorie à pieceElement (la balise article)
     pieceElement.appendChild(categorieElement);
-    //Ajout des éléments au DOM pour l'exercice
+    // On rattache la description à pieceElement (la balise article)
     pieceElement.appendChild(descriptionElement);
+    // On rattache le stock à pieceElement (la balise article)
     pieceElement.appendChild(stockElement);
+    // On rattache le boutton à pieceElement (la balise article)
+    pieceElement.appendChild(avisBouton);
 
   }
+  ajoutListenersAvis();
 }
-
 genererPieces(pieces);
 
 const boutonTrier = document.querySelector(".btn-trier");
