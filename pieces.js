@@ -97,3 +97,84 @@ boutonFiltrer.addEventListener("click", function () {
   });
   console.log(piecesFiltrees);
 });
+
+const boutonDecroissant = document.querySelector(".btn-decroissant")
+boutonDecroissant.addEventListener("click", function() {
+  // On créer un nouveau tableau pour les pieces triées à partir de la liste de pieces.
+  // On trie la liste pieces en fonction de la disponibilité.
+  const piecesDecroissant = Array.from(pieces);
+  // La fonction sort s’attend à recevoir un nombre de la part de la fonction anonym
+  piecesDecroissant.sort(function (a, b) {
+    return b.prix - a.prix;
+  });
+  console.log(piecesDecroissant);
+});
+
+const boutonNoDescription = document.querySelector(".btn-nodesc")
+boutonNoDescription.addEventListener("click", function() {
+  const piecesFiltrees = pieces.filter(function(piece) {
+    return piece.description
+  });
+  console.log(piecesFiltrees);
+});
+
+
+// Recupération des nom de pieces dans une nouvelle liste (tableau): 2 écritures possibles
+// // Fonction normale:
+// const noms = pieces.map(function (piece) {
+//   return piece.nom;
+// })
+
+// // Fonction lambda:
+// affichage en console de ce nouveau tableau
+// La nouvelle liste noms ne contient que les noms des pieces auto de la liste pieces
+// EX: Si on veu tpar exemple effectuer une remise sur les pieces on peut aussi utiliser map:
+// // const prix_remise = pieces.map(piece => piece.prix / 2); => permet d'effectuer une remise de -5°% sur le prix de chaque piece
+// for(let i = pieces.length -1 ; i >= 0; i--){
+  //   if(pieces[i].prix > 35){
+    //       noms.splice(i,1)
+    //   }
+    // }
+
+const noms = pieces.map(piece => piece.nom);
+for(let i = pieces.length -1  ; i >= 0; i--){
+  if(pieces[i].prix > 35){
+      noms.splice(i,1)
+  }
+}
+console.log(noms);
+
+//Création de la liste
+const abordablesElements = document.createElement('ul');
+//Ajout de chaque nom à la liste
+for(let i=0; i < noms.length ; i++) {
+    const nomElement = document.createElement('li');
+    nomElement.innerText = noms[i];
+    abordablesElements.appendChild(nomElement)
+}
+// Ajout de l'en-tête puis de la liste au bloc résultats filtres
+document.querySelector('.abordables').appendChild(abordablesElements)
+
+
+//Afficher les pieces disponibles et leurs prix
+// Creation des nouvelles liste noms et prix
+const nomsDisponibles = pieces.map(piece => piece.nom);
+const prixDisponibles = pieces.map(piece => piece.prix);
+//iteration sur chaque elements de la liste pieces, si pas disponible, on retire le nom et le prix de la nouvelle liste)
+for(let i = pieces.length -1  ; i >= 0; i--){
+  if(pieces[i].disponibilite === false){
+    nomsDisponibles.splice(i,1)
+    prixDisponibles.splice(i,1)
+  }
+}
+//Création de la liste dans le DOM
+const disponibleElement = document.createElement('ul');
+//Ajout de chaque nom à la liste
+for(let i=0; i < nomsDisponibles.length ; i++) {
+  const nomElement = document.createElement('li');
+  nomElement.innerText = `${nomsDisponibles[i]} - ${prixDisponibles[i]}`;
+  disponibleElement.appendChild(nomElement)
+}
+// On rattache la liste au DOM
+document.querySelector('.disponibles').appendChild(disponibleElement)
+
