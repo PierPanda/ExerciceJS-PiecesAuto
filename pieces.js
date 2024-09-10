@@ -97,3 +97,4 @@ boutonFiltrer.addEventListener("click", function () {
   });
   console.log(piecesFiltrees);
 });
+
