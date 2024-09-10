@@ -72,8 +72,8 @@ boutonTrier.addEventListener("click", function () {
   piecesOrdonees.sort(function (a, b) {
       return a.prix - b.prix;
   });
-  console.log(piecesOrdonees);
-
+  document.querySelector(".fiches").innerHTML = "";
+    genererPieces(piecesOrdonees);
 });
 
 const boutonFiltrer = document.querySelector(".btn-filtrer");
@@ -84,7 +84,8 @@ boutonFiltrer.addEventListener("click", function () {
   const piecesFiltrees = pieces.filter(function (piece) {
       return piece.prix <= 35;
   });
-  console.log(piecesFiltrees);
+  document.querySelector(".fiches").innerHTML = "";
+    genererPieces(piecesFiltrees);
 });
 
 const boutonDecroissant = document.querySelector(".btn-decroissant")
@@ -96,7 +97,8 @@ boutonDecroissant.addEventListener("click", function() {
   piecesDecroissant.sort(function (a, b) {
     return b.prix - a.prix;
   });
-  console.log(piecesDecroissant);
+  document.querySelector(".fiches").innerHTML = "";
+    genererPieces(piecesDecroissant);
 });
 
 const boutonNoDescription = document.querySelector(".btn-nodesc")
@@ -104,7 +106,8 @@ boutonNoDescription.addEventListener("click", function() {
   const piecesFiltrees = pieces.filter(function(piece) {
     return piece.description
   });
-  console.log(piecesFiltrees);
+  document.querySelector(".fiches").innerHTML = "";
+    genererPieces(piecesFiltrees);
 });
 
 
