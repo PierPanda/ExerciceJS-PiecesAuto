@@ -1,30 +1,23 @@
 //Import du fichier avis.js qui contien l'appel API
 import { ajoutListenersAvis, ajoutListenerEnvoyerAvis } from "./avis.js";
-// // Récupération des pièces depuis le fichier JSON
-const reponse = await fetch("http://localhost:8081/pieces");
-const pieces = await reponse.json();
+
+// Récupération des pièces éventuellement stockées dans le localStorage
+let pieces = window.localStorage.getItem("pieces");
+if (pieces === null){
+  // // Récupération des pièces depuis le fichier JSON
+  const reponse = await fetch("http://localhost:8081/pieces");
+  const pieces = await reponse.json();
+  // Transformation des pièces en JSON
+  const valeurPieces = JSON.stringify(pieces);
+  // Stockage des informations dans le localStorage
+  window.localStorage.setItem("pieces", valeurPieces);
+}else{
+  pieces = JSON.parse(pieces);
+}
 
 //Appel de la fonction pour appeler l'écoute du formulaire d'avis
 ajoutListenerEnvoyerAvis()
 
-  // // création des éléments du DOM représentant les fiches produits
-  // const article = pieces[0];
-  // const imageElement = document.createElement("img");
-  // imageElement.src = article.image;
-  // const nomElement = document.createElement("h2");
-  // nomElement.innerText = article.nom;
-  // const prixElement = document.createElement("p");
-  // // si le prix est inferieur à 35€, on ajout 1 seul symbol € sinon superieur à 35€) on ajoute 3 symbols €
-  // prixElement.innerText = `Prix: ${article.prix} € (${article.prix < 35 ? "€" : "€€€"})`;
-  // const categorieElement = document.createElement("p");
-  // categorieElement.innerText = article.categorie ?? "(aucune catégorie)";
-
-  // // Intégration de ces éléments dans le DOM
-  // const sectionFiches = document.querySelector(".fiches");
-  // sectionFiches.appendChild(imageElement);
-  // sectionFiches.appendChild(prixElement);
-  // sectionFiches.appendChild(categorieElement);
-// Récupération des pièces depuis le fichier JSON
 function genererPieces(pieces){
   for (let i = 0; i < pieces.length; i++) {
 
@@ -36,22 +29,22 @@ function genererPieces(pieces){
     // Création des balises image
     const imageElement = document.createElement("img");
     imageElement.src = article.image;
-
+    // Création d’une balise dédiée au nom d'une pièce automobile
     const nomElement = document.createElement("h2");
     nomElement.innerText = article.nom;
-
+    // Création des balises h2
     const prixElement = document.createElement("p");
     prixElement.innerText = `Prix: ${article.prix} € (${article.prix < 35 ? "€" : "€€€"})`;
-
+    // Création d’une balise dédiée à la catégorie d'une pièce automobile
     const categorieElement = document.createElement("p");
     categorieElement.innerText = article.categorie ?? "(aucune catégorie)";
-
+    // Création des balises p
     const descriptionElement = document.createElement("p");
     descriptionElement.innerText = article.description ?? "Aucune description pour le moment.";
-
+    // Création d’une balise dédiée à la dispo d'une pièce automobile
     const stockElement = document.createElement("p");
     stockElement.innerText = article.disponibilite ? "En stock" : "Rupture de stock";
-
+    // Création des balises p
     const avisBouton = document.createElement("button");
     //recupération du data-id
     avisBouton.dataset.id = article.id;
@@ -90,7 +83,6 @@ boutonTrier.addEventListener("click", function () {
     // si le nombre est positif, alors B sera rangé avant A ;
     // si le nombre est négatif, alors A sera rangé avant B ;
     //si le nombre est zéro (0), alors l’ordre sera inchangé.
-
   piecesOrdonees.sort(function (a, b) {
       return a.prix - b.prix;
   });
@@ -135,22 +127,12 @@ boutonNoDescription.addEventListener("click", function() {
 
 // Recupération des nom de pieces dans une nouvelle liste (tableau): 2 écritures possibles
 // // Fonction normale:
-// const noms = pieces.map(function (piece) {
-//   return piece.nom;
-// })
-
+const noms = pieces.map(piece => piece.nom);
 // // Fonction lambda:
 // affichage en console de ce nouveau tableau
 // La nouvelle liste noms ne contient que les noms des pieces auto de la liste pieces
 // EX: Si on veu tpar exemple effectuer une remise sur les pieces on peut aussi utiliser map:
 // // const prix_remise = pieces.map(piece => piece.prix / 2); => permet d'effectuer une remise de -5°% sur le prix de chaque piece
-// for(let i = pieces.length -1 ; i >= 0; i--){
-  //   if(pieces[i].prix > 35){
-    //       noms.splice(i,1)
-    //   }
-    // }
-
-const noms = pieces.map(piece => piece.nom);
 for(let i = pieces.length -1  ; i >= 0; i--){
   if(pieces[i].prix > 35){
       noms.splice(i,1)
@@ -203,3 +185,9 @@ inputPrixMax.addEventListener('input',  function() {
   document.querySelector(".fiches").innerHTML = '';
   genererPieces(piecesFiltrees);
 })
+
+// Ajout du listener pour mettre à jour des données du localStorage
+const boutonMettreAJour = document.querySelector(".btn-maj-pieces");
+boutonMettreAJour.addEventListener("click", function () {
+  window.localStorage.removeItem("pieces");
+});
