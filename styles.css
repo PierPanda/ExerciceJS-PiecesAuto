@@ -32,8 +32,10 @@ main {
 }
 
 .filtres {
+
 	border-radius: 10px;
   background: white;
+	border-radius: 4px;
 	box-shadow: 0px 0px 4px lightgray;
 	margin: 8px;
 	padding: 8px;
@@ -52,6 +54,7 @@ main {
 	gap: 10px;
 }
 .fiches article {
+
   position: relative;
   background: white;
   border-radius: 0px 10px 0px 10px;
@@ -70,6 +73,14 @@ main {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+
+	/* border: 1px solid lightgray; */
+  box-shadow: 0px 0px 4px lightgray;
+	padding: 4px;
+}
+.fiches article li {
+  list-style-type: none;
+
 }
 
 .fiches article img {
