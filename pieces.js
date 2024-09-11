@@ -1,8 +1,11 @@
 //Import du fichier avis.js qui contien l'appel API
-import { ajoutListenersAvis } from "./avis.js";
+import { ajoutListenersAvis, ajoutListenerEnvoyerAvis } from "./avis.js";
 // // Récupération des pièces depuis le fichier JSON
 const reponse = await fetch("http://localhost:8081/pieces");
 const pieces = await reponse.json();
+
+//Appel de la fonction pour appeler l'écoute du formulaire d'avis
+ajoutListenerEnvoyerAvis()
 
   // // création des éléments du DOM représentant les fiches produits
   // const article = pieces[0];
