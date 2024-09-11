@@ -32,7 +32,7 @@ main {
 
 .filtres {
 	border-radius: 4px;
-	box-shadow: 0px 0px 4px gray;
+	box-shadow: 0px 0px 4px lightgray;
 	margin: 8px;
 	padding: 8px;
 	min-width: 300px;
@@ -47,17 +47,22 @@ main {
 	margin: 8px;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 4px;
+	gap: 10px;
 }
 .fiches article {
-	border: 1px solid black;
+	/* border: 1px solid lightgray; */
+  box-shadow: 0px 0px 4px lightgray;
 	padding: 4px;
 }
+.fiches article li {
+  list-style-type: none;
+}
+
 .fiches article img {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	max-width: 200px;
+	max-width: 100px;
 }
 .fiches article p {
 	margin-top: 4px;
