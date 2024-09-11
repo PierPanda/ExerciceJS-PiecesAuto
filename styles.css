@@ -5,6 +5,7 @@ body {
 	margin: auto;
 	padding: 16px;
 	font-family: 'Montserrat', sans-serif;
+  background:#7551eb5d;
 }
 
 header {
@@ -31,6 +32,9 @@ main {
 }
 
 .filtres {
+
+	border-radius: 10px;
+  background: white;
 	border-radius: 4px;
 	box-shadow: 0px 0px 4px lightgray;
 	margin: 8px;
@@ -50,12 +54,33 @@ main {
 	gap: 10px;
 }
 .fiches article {
+
+  position: relative;
+  background: white;
+  border-radius: 0px 10px 0px 10px;
+  box-shadow: 0px 0px 2px lightgray;
+	/* border: 1px solid black; */
+	padding: 4px;
+}
+
+.fiches article button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  padding: 2px 5px;
+  background-color: rgba(145, 66, 201, 0.524);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
 	/* border: 1px solid lightgray; */
   box-shadow: 0px 0px 4px lightgray;
 	padding: 4px;
 }
 .fiches article li {
   list-style-type: none;
+
 }
 
 .fiches article img {
@@ -65,8 +90,9 @@ main {
 	max-width: 100px;
 }
 .fiches article p {
+  font-size: 12px;
 	margin-top: 4px;
-	margin-bottom: 4px;
+	margin-bottom: 8px;
 }
 .fiches article h2 {
 	text-align: center;
