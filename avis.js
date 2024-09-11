@@ -6,8 +6,9 @@ export function ajoutListenersAvis() {
       const id = event.target.dataset.id;
       const reponse = await fetch("http://localhost:8081/pieces/" + id + "/avis");
       const avis = await reponse.json();
+      //Chargement des avis 
+      window.localStorage.setItem(`avis-piece-${id}`, JSON.stringify(avis))
       const pieceElement = event.target.parentElement;
-
       const avisElement = document.createElement("p");
       for (let i = 0; i < avis.length; i++) {
         avisElement.innerHTML += `${avis[i].utilisateur}: ${avis[i].commentaire} <br>`;

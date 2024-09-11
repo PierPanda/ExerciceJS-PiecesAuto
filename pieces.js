@@ -163,6 +163,7 @@ for(let i = pieces.length -1  ; i >= 0; i--){
     prixDisponibles.splice(i,1)
   }
 }
+
 //Création de la liste dans le DOM
 const disponibleElement = document.createElement('ul');
 //Ajout de chaque nom à la liste
@@ -171,6 +172,7 @@ for(let i=0; i < nomsDisponibles.length ; i++) {
   nomElement.innerText = `${nomsDisponibles[i]} - ${prixDisponibles[i]}`;
   disponibleElement.appendChild(nomElement)
 }
+
 // On rattache la liste au DOM
 document.querySelector('.disponibles').appendChild(disponibleElement)
 
