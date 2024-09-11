@@ -41,5 +41,41 @@
         "image": "images/balai-essuie-glace.png",
         "description": "Performances d’essuyage au top ! Longueur : 550 mm.",
         "disponibilite": true
+    },
+    {
+      "id": 6,
+      "nom": "Filtre à huile",
+      "prix": 15,
+      "categorie": "Entretien",
+      "image": "images/filtre-huile.png",
+      "description": "Filtres les impuretés de l'huile moteur.",
+      "disponibilite": true
+    },
+    {
+      "id": 7,
+      "nom": "Batterie 12V",
+      "prix": 120,
+      "categorie": "Électricité",
+      "image": "images/batterie-12v.png",
+      "description": "Batterie de démarrage puissante.",
+      "disponibilite": false
+    },
+    {
+      "id": 8,
+      "nom": "Essuie-glace avant",
+      "prix": 20,
+      "categorie": "Accessoires",
+      "image": "images/essuie-glace-avant.png",
+      "description": "Assure une visibilité optimale en cas de pluie.",
+      "disponibilite": true
+    },
+    {
+      "id": 9,
+      "nom": "Bougie d'allumage",
+      "prix": 10,
+      "categorie": "Moteur",
+      "image": "images/bougie-allumage.png",
+      "description": "Assure un allumage efficace du moteur.",
+      "disponibilite": true
     }
 ]
