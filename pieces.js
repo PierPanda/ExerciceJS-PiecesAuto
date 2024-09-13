@@ -1,5 +1,5 @@
 //Import du fichier avis.js qui contien l'appel API
-import { ajoutListenersAvis, ajoutListenerEnvoyerAvis } from "./avis.js";
+import { ajoutListenersAvis, ajoutListenerEnvoyerAvis, afficherGraphiqueAvis} from "./avis.js";
 
 // Récupération des pièces éventuellement stockées dans le localStorage
 let pieces = window.localStorage.getItem("pieces");
@@ -49,7 +49,7 @@ function genererPieces(pieces){
     //recupération du data-id
     avisBouton.dataset.id = article.id;
     //affichage du text dans le boutton
-    avisBouton.textContent = "Afficher les avis";
+    avisBouton.textContent = "Avis";
 
     // On rattache la balise article a la section Fiches
     sectionFiches.appendChild(pieceElement);
@@ -193,3 +193,6 @@ const boutonMettreAJour = document.querySelector(".btn-maj-pieces");
 boutonMettreAJour.addEventListener("click", function () {
   window.localStorage.removeItem("pieces");
 });
+
+//Affichage du graph final des avis
+await afficherGraphiqueAvis();
